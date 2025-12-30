@@ -278,6 +278,53 @@
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
+        /* Rolling Message Marquee */
+        .message-marquee {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 2px solid rgba(168, 216, 255, 0.3);
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .marquee-message {
+            font-size: 20px;
+            color: #a8d8ff;
+            font-style: italic;
+            animation: fadeInOut 6s ease-in-out infinite;
+            position: absolute;
+            width: 90%;
+            text-align: center;
+            opacity: 0;
+        }
+
+        .marquee-message.active {
+            opacity: 1;
+            animation: fadeInOut 6s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(10px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-10px); }
+        }
+
+        .marquee-author {
+            display: block;
+            margin-top: 8px;
+            font-size: 14px;
+            color: #ffd700;
+            font-style: normal;
+        }
+
         /* Tab Navigation */
         .tab-navigation {
             display: flex;
@@ -955,6 +1002,14 @@
                 Counting down to 2026...
             </div>
 
+            <!-- Rolling Message Marquee -->
+            <div class="message-marquee" id="messageMarquee">
+                <div class="marquee-message active">
+                    "Ready to party like it's 2026! 🎉"
+                    <span class="marquee-author">- Sign the guestbook to see your message here!</span>
+                </div>
+            </div>
+
             <!-- Tab Navigation -->
             <div class="tab-navigation">
                 <button class="tab-button active" onclick="switchTab('itinerary')">📅 Itinerary</button>
@@ -1090,7 +1145,9 @@
                         <input type="text" class="guestbook-input" id="guestMessage" placeholder="Leave a message..." maxlength="100">
                         <button class="guestbook-button" id="signGuestbook">Sign!</button>
                     </div>
-                    <div class="guestbook-entries" id="guestbookEntries"></div>
+                    <div class="guestbook-entries" id="guestbookEntries">
+                        <p style="text-align: center; color: #888; font-style: italic;">No signatures yet. Be the first to sign!</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1526,6 +1583,35 @@
 
         // ==================== GUESTBOOK ====================
         let guestbookEntries = [];
+        let currentMarqueeIndex = 0;
+        let marqueeInterval;
+
+        const defaultMessages = [
+            { name: "Party Bot", message: "Ready to party like it's 2026! 🎉" },
+            { name: "The Host", message: "Can't wait to celebrate with all of you!" },
+            { name: "Time Traveler", message: "The future is looking bright! ✨" }
+        ];
+
+        function startMarquee() {
+            const marqueeContainer = document.getElementById('messageMarquee');
+            
+            function showNextMessage() {
+                const messages = guestbookEntries.length > 0 ? guestbookEntries : defaultMessages;
+                const message = messages[currentMarqueeIndex];
+                
+                marqueeContainer.innerHTML = `
+                    <div class="marquee-message active">
+                        "${message.message}"
+                        <span class="marquee-author">- ${message.name}</span>
+                    </div>
+                `;
+                
+                currentMarqueeIndex = (currentMarqueeIndex + 1) % messages.length;
+            }
+            
+            showNextMessage();
+            marqueeInterval = setInterval(showNextMessage, 6000);
+        }
 
         document.getElementById('signGuestbook').addEventListener('click', () => {
             const name = document.getElementById('guestName').value.trim();
@@ -1544,6 +1630,11 @@
                 document.getElementById('guestName').value = '';
                 document.getElementById('guestMessage').value = '';
                 
+                // Restart marquee with new messages
+                clearInterval(marqueeInterval);
+                currentMarqueeIndex = 0;
+                startMarquee();
+                
                 createConfetti();
             } else {
                 alert('Please enter both your name and a message!');
@@ -1552,6 +1643,12 @@
 
         function displayGuestbookEntries() {
             const container = document.getElementById('guestbookEntries');
+            
+            if (guestbookEntries.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #888; font-style: italic;">No signatures yet. Be the first to sign!</p>';
+                return;
+            }
+            
             container.innerHTML = '';
             
             guestbookEntries.forEach(entry => {
@@ -1699,6 +1796,7 @@
         generateStars();
         updateCountdown();
         setInterval(updateCountdown, 1000);
+        startMarquee(); // Start the rolling message marquee
 
         document.querySelectorAll('.itinerary-item').forEach(item => {
             item.addEventListener('click', function() {
