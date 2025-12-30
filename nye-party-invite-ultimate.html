@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year's Eve Party 2026 - Discord Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        /* Animated background stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Disco ball effect */
+        .disco-ball {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #c0c0c0, #808080);
+            border-radius: 50%;
+            z-index: 100;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .disco-ball.active {
+            opacity: 1;
+        }
+
+        @keyframes rotate {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        .disco-light {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .disco-light.active {
+            opacity: 0.3;
+            animation: disco-lights 2s ease-in-out infinite;
+        }
+
+        @keyframes disco-lights {
+            0%, 100% { transform: scale(0.8); opacity: 0.2; }
+            50% { transform: scale(1.2); opacity: 0.4; }
+        }
+
+        /* Envelope container */
+        #envelope-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+            transition: opacity 0.5s ease-out;
+        }
+
+        #envelope-container.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope {
+            width: 300px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2c5f8d 0%, #1e4d6d 100%);
+            border: 3px solid #4a90c9;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 100px solid #4a90c9;
+            top: 0;
+            left: 0;
+            transform-origin: top center;
+            transition: transform 0.6s ease;
+            z-index: 2;
+        }
+
+        .envelope-wrapper.opening .envelope-flap {
+            transform: rotateX(-180deg);
+        }
+
+        .envelope-seal {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+            border-radius: 50%;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+            border: 3px solid #ffed4e;
+        }
+
+        .envelope-text {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 18px;
+            color: #a8d8ff;
+            text-shadow: 0 2px 10px rgba(168, 216, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Main invitation container */
+        #invitation-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        #invitation-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .invitation-card {
+            background: linear-gradient(135deg, rgba(20, 30, 48, 0.95) 0%, rgba(36, 59, 85, 0.95) 100%);
+            border: 3px solid #4a90c9;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 50px rgba(74, 144, 201, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invitation-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .invitation-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .invitation-title {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .invitation-title:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        .invitation-subtitle {
+            font-size: 24px;
+            color: #a8d8ff;
+            font-style: italic;
+        }
+
+        .countdown {
+            text-align: center;
+            font-size: 28px;
+            color: #ffd700;
+            margin: 20px 0;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #4a90c9;
+            border-radius: 10px;
+            color: #a8d8ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-button:hover {
+            background: rgba(74, 144, 201, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(74, 144, 201, 0.3);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #4a90c9, #2c5f8d);
+            color: #fff;
+            border-color: #ffd700;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Itinerary Styles */
+        .itinerary-title {
+            font-size: 32px;
+            color: #4a90c9;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(74, 144, 201, 0.5);
+        }
+
+        .itinerary-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #ffd700;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .itinerary-item:hover {
+            background: rgba(74, 144, 201, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(74, 144, 201, 0.3);
+        }
+
+        .itinerary-time {
+            font-size: 20px;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .itinerary-content {
+            font-size: 18px;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .games-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .game-tag {
+            background: linear-gradient(135deg, #4a90c9, #2c5f8d);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #fff;
+            box-shadow: 0 3px 10px rgba(74, 144, 201, 0.3);
+        }
+
+        .party-details {
+            text-align: center;
+            font-size: 18px;
+            color: #e0e0e0;
+            line-height: 1.8;
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            border: 2px solid rgba(74, 144, 201, 0.3);
+        }
+
+        /* Game Section Styles */
+        .game-section {
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 2px solid #ff6b6b;
+        }
+
+        .game-title {
+            font-size: 28px;
+            color: #ff6b6b;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .game-instructions {
+            text-align: center;
+            color: #a8d8ff;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            font-size: 18px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stat {
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border: 2px solid #4a90c9;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .stat-value {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .game-area {
+            position: relative;
+            height: 350px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px dashed #4a90c9;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 65px;
+            cursor: pointer;
+            font-size: 45px;
+            transition: transform 0.1s ease;
+            user-select: none;
+            line-height: 1;
+        }
+
+        .balloon:hover {
+            transform: scale(1.15);
+        }
+
+        .distractor {
+            position: absolute;
+            cursor: pointer;
+            font-size: 40px;
+            transition: transform 0.1s ease;
+            user-select: none;
+            animation: float-item 3s ease-in-out infinite;
+        }
+
+        .distractor:hover {
+            transform: scale(1.15);
+        }
+
+        @keyframes float-item {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        .game-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b6b, #ff8c8c);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .game-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.5);
+        }
+
+        .game-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Trivia Game */
+        .trivia-question {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #ffd700;
+        }
+
+        .trivia-question h3 {
+            font-size: 22px;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .trivia-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .trivia-option {
+            padding: 15px;
+            background: rgba(74, 144, 201, 0.2);
+            border: 2px solid #4a90c9;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .trivia-option:hover {
+            background: rgba(74, 144, 201, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 144, 201, 0.3);
+        }
+
+        .trivia-option.correct {
+            background: rgba(76, 175, 80, 0.4);
+            border-color: #4caf50;
+        }
+
+        .trivia-option.incorrect {
+            background: rgba(244, 67, 54, 0.4);
+            border-color: #f44336;
+        }
+
+        .trivia-result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Memory Game */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #2c5f8d, #1e4d6d);
+            border: 3px solid #4a90c9;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .memory-card:hover:not(.flipped):not(.matched) {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(74, 144, 201, 0.5);
+        }
+
+        .memory-card .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+            transition: transform 0.3s;
+        }
+
+        .memory-card .card-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+            transition: transform 0.3s;
+        }
+
+        .memory-card.flipped .card-back {
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.flipped .card-front {
+            transform: rotateY(0deg);
+        }
+
+        .memory-card.matched {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            border-color: #66bb6a;
+        }
+
+        /* Resolution & Guestbook Section */
+        .resolution-section {
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+        }
+
+        .resolution-title {
+            font-size: 28px;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .resolution-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #4a90c9;
+            border-radius: 10px;
+            color: #fff;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .resolution-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .resolution-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .resolution-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border: none;
+            border-radius: 10px;
+            color: #0a0e27;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .resolution-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .resolution-message {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 16px;
+            color: #4a90c9;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .resolution-message.visible {
+            opacity: 1;
+        }
+
+        /* Guestbook */
+        .guestbook-section {
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 2px solid #a8d8ff;
+        }
+
+        .guestbook-title {
+            font-size: 28px;
+            color: #a8d8ff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .guestbook-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .guestbook-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #4a90c9;
+            border-radius: 10px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .guestbook-input:focus {
+            outline: none;
+            border-color: #a8d8ff;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(168, 216, 255, 0.3);
+        }
+
+        .guestbook-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .guestbook-button {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #4a90c9, #2c5f8d);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .guestbook-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(74, 144, 201, 0.4);
+        }
+
+        .guestbook-entries {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .guestbook-entry {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-left: 4px solid #a8d8ff;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .guestbook-name {
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+
+        .guestbook-message {
+            color: #e0e0e0;
+        }
+
+        .guestbook-time {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .closing {
+            text-align: center;
+            font-size: 24px;
+            color: #ffd700;
+            margin-top: 30px;
+            font-style: italic;
+        }
+
+        /* Fireworks */
+        .firework {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Pop effect */
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .invitation-card {
+                padding: 30px 20px;
+            }
+
+            .invitation-title {
+                font-size: 32px;
+            }
+
+            .invitation-subtitle {
+                font-size: 18px;
+            }
+
+            .countdown {
+                font-size: 20px;
+            }
+
+            .tab-button {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+
+            .itinerary-title, .game-title, .guestbook-title, .resolution-title {
+                font-size: 24px;
+            }
+
+            .envelope {
+                width: 250px;
+                height: 167px;
+            }
+
+            .envelope-flap {
+                border-left: 125px solid transparent;
+                border-right: 125px solid transparent;
+                border-top: 83px solid #4a90c9;
+            }
+
+            .trivia-options {
+                grid-template-columns: 1fr;
+            }
+
+            .memory-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .game-stats {
+                flex-direction: column;
+            }
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Disco ball and lights -->
+    <div class="disco-ball" id="discoBall"></div>
+    <div class="disco-light" id="discoLight1" style="background: radial-gradient(circle, rgba(255,107,107,0.5), transparent);"></div>
+    <div class="disco-light" id="discoLight2" style="background: radial-gradient(circle, rgba(74,144,201,0.5), transparent);"></div>
+    <div class="disco-light" id="discoLight3" style="background: radial-gradient(circle, rgba(255,215,0,0.5), transparent);"></div>
+
+    <!-- Animated stars background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Envelope -->
+    <div id="envelope-container">
+        <div class="envelope-wrapper" id="envelope">
+            <div class="envelope">
+                <div class="envelope-back"></div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-seal floating">🎉</div>
+            </div>
+            <div class="envelope-text">Click to open your invitation!</div>
+        </div>
+    </div>
+
+    <!-- Invitation -->
+    <div id="invitation-container">
+        <div class="invitation-card">
+            <div class="invitation-header">
+                <h1 class="invitation-title" id="mainTitle">New Year's Eve Party 2026</h1>
+                <p class="invitation-subtitle">Discord Edition</p>
+            </div>
+
+            <div class="countdown" id="countdown">
+                Counting down to 2026...
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tab-navigation">
+                <button class="tab-button active" onclick="switchTab('itinerary')">📅 Itinerary</button>
+                <button class="tab-button" onclick="switchTab('games')">🎮 Games</button>
+                <button class="tab-button" onclick="switchTab('resolutions')">✨ Resolutions</button>
+            </div>
+
+            <!-- Tab Contents -->
+            
+            <!-- Itinerary Tab -->
+            <div id="itinerary-tab" class="tab-content active">
+                <div class="itinerary">
+                    <h2 class="itinerary-title">🎊 Tonight's Itinerary 🎊</h2>
+                    
+                    <div class="itinerary-item">
+                        <div class="itinerary-time">⚡ 6:00 PM ET</div>
+                        <div class="itinerary-content">Watch New Percy Jackson Episode</div>
+                    </div>
+
+                    <div class="itinerary-item">
+                        <div class="itinerary-time">☢️ 7:00 PM ET</div>
+                        <div class="itinerary-content">Watch New Fallout Episode</div>
+                    </div>
+
+                    <div class="itinerary-item">
+                        <div class="itinerary-time">🔮 8:00 PM ET</div>
+                        <div class="itinerary-content">Watch Stranger Things Finale</div>
+                    </div>
+
+                    <div class="itinerary-item">
+                        <div class="itinerary-time">🎮 Throughout the Night</div>
+                        <div class="itinerary-content">
+                            Play Games & Have Fun!
+                            <div class="games-list">
+                                <span class="game-tag">Repo</span>
+                                <span class="game-tag">Among Us</span>
+                                <span class="game-tag">Fortnite</span>
+                                <span class="game-tag">Marvel Rivals</span>
+                                <span class="game-tag">Jackbox</span>
+                                <span class="game-tag">Golf with Friends</span>
+                                <span class="game-tag">Duck Duck Goose</span>
+                                <span class="game-tag">And so much more!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="party-details">
+                    🥂 <strong>Bring your drinks and cheerful vibes!</strong> 🥂<br>
+                    We'll be hanging out and being silly as we ring in the new year.<br><br>
+                    🎥 <strong>Streaming is encouraged</strong> for our friends that want to start 2026 getting back to the grind!
+                </div>
+
+                <div class="closing">
+                    We hope to see you there! 🎆
+                </div>
+            </div>
+
+            <!-- Games Tab -->
+            <div id="games-tab" class="tab-content">
+                <!-- Balloon Popping Game -->
+                <div class="game-section">
+                    <h2 class="game-title">🎈 Pop the Balloons! 🎈</h2>
+                    <p class="game-instructions">Click ONLY the balloons! Other items cost -1 point!</p>
+                    <div class="game-stats">
+                        <div class="stat">
+                            Score: <span class="stat-value" id="score">0</span>
+                        </div>
+                        <div class="stat">
+                            Time: <span class="stat-value" id="timer">30</span>s
+                        </div>
+                        <div class="stat">
+                            High Score: <span class="stat-value" id="highScore">0</span>
+                        </div>
+                    </div>
+                    <div class="game-area" id="gameArea"></div>
+                    <button class="game-button" id="startGame">Start Game!</button>
+                </div>
+
+                <!-- Trivia Game -->
+                <div class="game-section" style="border-color: #ffd700;">
+                    <h2 class="game-title" style="color: #ffd700;">🎯 New Year's Trivia! 🎯</h2>
+                    <p class="game-instructions">Test your New Year's knowledge!</p>
+                    <div class="game-stats">
+                        <div class="stat">
+                            Correct: <span class="stat-value" id="triviaScore">0</span>
+                        </div>
+                        <div class="stat">
+                            Question: <span class="stat-value" id="triviaProgress">1/5</span>
+                        </div>
+                    </div>
+                    <div id="triviaContainer"></div>
+                    <button class="game-button" id="startTrivia" style="background: linear-gradient(135deg, #ffd700, #ffed4e); color: #0a0e27;">Start Trivia!</button>
+                </div>
+
+                <!-- Memory Match Game -->
+                <div class="game-section" style="border-color: #a8d8ff;">
+                    <h2 class="game-title" style="color: #a8d8ff;">🧠 Memory Match! 🧠</h2>
+                    <p class="game-instructions">Match the New Year's pairs!</p>
+                    <div class="game-stats">
+                        <div class="stat">
+                            Matches: <span class="stat-value" id="memoryMatches">0/8</span>
+                        </div>
+                        <div class="stat">
+                            Moves: <span class="stat-value" id="memoryMoves">0</span>
+                        </div>
+                    </div>
+                    <div class="memory-grid" id="memoryGrid"></div>
+                    <button class="game-button" id="startMemory" style="background: linear-gradient(135deg, #a8d8ff, #4a90c9);">Start Memory Game!</button>
+                </div>
+            </div>
+
+            <!-- Resolutions Tab -->
+            <div id="resolutions-tab" class="tab-content">
+                <div class="resolution-section">
+                    <h3 class="resolution-title">✨ Your 2026 Resolution ✨</h3>
+                    <input 
+                        type="text" 
+                        class="resolution-input" 
+                        id="resolution-input" 
+                        placeholder="What's your resolution for the new year?"
+                        maxlength="200">
+                    <button class="resolution-button" id="resolution-button">
+                        Make It Sparkle! ✨
+                    </button>
+                    <div class="resolution-message" id="resolution-message"></div>
+                </div>
+
+                <div class="guestbook-section">
+                    <h2 class="guestbook-title">📝 Party Guestbook 📝</h2>
+                    <div class="guestbook-form">
+                        <input type="text" class="guestbook-input" id="guestName" placeholder="Your name..." maxlength="30">
+                        <input type="text" class="guestbook-input" id="guestMessage" placeholder="Leave a message..." maxlength="100">
+                        <button class="guestbook-button" id="signGuestbook">Sign!</button>
+                    </div>
+                    <div class="guestbook-entries" id="guestbookEntries"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Balloon Game Variables
+        let gameActive = false;
+        let score = 0;
+        let timeLeft = 30;
+        let gameInterval;
+        let timerInterval;
+        let highScore = localStorage.getItem('balloonHighScore') || 0;
+        document.getElementById('highScore').textContent = highScore;
+
+        const balloonEmojis = ['🎈'];
+        const distractorEmojis = ['⭐', '✨', '🎁', '🎊', '💫', '🌟'];
+
+        // Trivia Game Variables
+        let triviaQuestions = [
+            {
+                question: "What year did Times Square start dropping the ball?",
+                options: ["1907", "1920", "1945", "1960"],
+                correct: 0
+            },
+            {
+                question: "What song is traditionally sung at midnight on New Year's Eve?",
+                options: ["Happy New Year", "Auld Lang Syne", "Celebration", "Party Rock Anthem"],
+                correct: 1
+            },
+            {
+                question: "Which country celebrates New Year first?",
+                options: ["Japan", "Australia", "Kiribati", "New Zealand"],
+                correct: 2
+            },
+            {
+                question: "What is the most popular New Year's resolution?",
+                options: ["Save money", "Exercise more", "Lose weight", "Learn something new"],
+                correct: 1
+            },
+            {
+                question: "How many people typically gather in Times Square for New Year's?",
+                options: ["100,000", "500,000", "1 million", "2 million"],
+                correct: 2
+            }
+        ];
+
+        let currentTriviaQuestion = 0;
+        let triviaScore = 0;
+
+        // Memory Game Variables
+        const memoryEmojis = ['🎉', '🎊', '🎆', '🎇', '✨', '🥂', '🍾', '⭐'];
+        let memoryCards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let memoryMoves = 0;
+        let canFlip = true;
+
+        // Generate animated stars
+        function generateStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 100;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Disco ball effect
+        const mainTitle = document.getElementById('mainTitle');
+        const discoBall = document.getElementById('discoBall');
+        const discoLights = [
+            document.getElementById('discoLight1'),
+            document.getElementById('discoLight2'),
+            document.getElementById('discoLight3')
+        ];
+
+        let discoInterval;
+
+        mainTitle.addEventListener('mouseenter', () => {
+            discoBall.classList.add('active');
+            discoLights.forEach((light, index) => {
+                light.classList.add('active');
+                light.style.left = Math.random() * 80 + 10 + '%';
+                light.style.top = Math.random() * 80 + 10 + '%';
+            });
+
+            discoInterval = setInterval(() => {
+                discoLights.forEach(light => {
+                    light.style.left = Math.random() * 80 + 10 + '%';
+                    light.style.top = Math.random() * 80 + 10 + '%';
+                });
+            }, 500);
+        });
+
+        mainTitle.addEventListener('mouseleave', () => {
+            discoBall.classList.remove('active');
+            discoLights.forEach(light => light.classList.remove('active'));
+            clearInterval(discoInterval);
+        });
+
+        // Envelope opening
+        const envelopeWrapper = document.getElementById('envelope');
+        const envelopeContainer = document.getElementById('envelope-container');
+        const invitationContainer = document.getElementById('invitation-container');
+
+        envelopeWrapper.addEventListener('click', function() {
+            this.classList.add('opening');
+            
+            setTimeout(() => {
+                envelopeContainer.classList.add('hidden');
+                invitationContainer.classList.add('visible');
+                createFireworks();
+                createConfetti();
+            }, 800);
+        });
+
+        // ==================== BALLOON GAME ====================
+        function createBalloon() {
+            if (!gameActive) return;
+
+            const gameArea = document.getElementById('gameArea');
+            const isBalloon = Math.random() > 0.3; // 70% chance of balloon
+            const item = document.createElement('div');
+            
+            if (isBalloon) {
+                item.className = 'balloon';
+                item.textContent = balloonEmojis[0];
+                item.dataset.type = 'balloon';
+            } else {
+                item.className = 'distractor';
+                item.textContent = distractorEmojis[Math.floor(Math.random() * distractorEmojis.length)];
+                item.dataset.type = 'distractor';
+            }
+            
+            item.style.left = Math.random() * (gameArea.offsetWidth - 50) + 'px';
+            item.style.top = Math.random() * (gameArea.offsetHeight - 65) + 'px';
+            
+            item.addEventListener('click', function() {
+                if (gameActive) {
+                    if (this.dataset.type === 'balloon') {
+                        score++;
+                        createMiniBurst(this.offsetLeft + 25, this.offsetTop + 32, true);
+                    } else {
+                        score = Math.max(0, score - 1);
+                        createMiniBurst(this.offsetLeft + 20, this.offsetTop + 20, false);
+                    }
+                    
+                    document.getElementById('score').textContent = score;
+                    this.style.animation = 'pop 0.3s ease';
+                    setTimeout(() => this.remove(), 300);
+                }
+            });
+            
+            gameArea.appendChild(item);
+            
+            setTimeout(() => {
+                if (item.parentNode) {
+                    item.remove();
+                }
+            }, 4000);
+        }
+
+        function startGame() {
+            if (gameActive) return;
+            
+            gameActive = true;
+            score = 0;
+            timeLeft = 30;
+            document.getElementById('score').textContent = score;
+            document.getElementById('timer').textContent = timeLeft;
+            document.getElementById('startGame').disabled = true;
+            document.getElementById('startGame').textContent = 'Game in Progress...';
+            document.getElementById('gameArea').innerHTML = '';
+            
+            gameInterval = setInterval(createBalloon, 700);
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function endGame() {
+            gameActive = false;
+            clearInterval(gameInterval);
+            clearInterval(timerInterval);
+            
+            document.getElementById('startGame').disabled = false;
+            document.getElementById('startGame').textContent = 'Play Again!';
+            
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('balloonHighScore', highScore);
+                document.getElementById('highScore').textContent = highScore;
+                
+                createFireworks();
+                createConfetti();
+                setTimeout(() => alert(`🎉 NEW HIGH SCORE: ${score}! 🎉`), 100);
+            } else {
+                setTimeout(() => alert(`Game Over! Final Score: ${score}`), 100);
+            }
+            
+            document.getElementById('gameArea').innerHTML = '';
+        }
+
+        document.getElementById('startGame').addEventListener('click', startGame);
+
+        function createMiniBurst(x, y, isGood) {
+            const colors = isGood ? ['#ffd700', '#ffed4e'] : ['#ff6b6b', '#ff4444'];
+            
+            for (let i = 0; i < 8; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (Math.PI * 2 * i) / 8;
+                const velocity = 1.5;
+                
+                document.body.appendChild(particle);
+                
+                let posX = x;
+                let posY = y;
+                let opacity = 1;
+                
+                const animation = setInterval(() => {
+                    posX += Math.cos(angle) * velocity;
+                    posY += Math.sin(angle) * velocity;
+                    opacity -= 0.03;
+                    
+                    particle.style.left = posX + 'px';
+                    particle.style.top = posY + 'px';
+                    particle.style.opacity = opacity;
+                    
+                    if (opacity <= 0) {
+                        clearInterval(animation);
+                        particle.remove();
+                    }
+                }, 20);
+            }
+        }
+
+        // ==================== TRIVIA GAME ====================
+        function startTrivia() {
+            currentTriviaQuestion = 0;
+            triviaScore = 0;
+            document.getElementById('triviaScore').textContent = triviaScore;
+            document.getElementById('triviaProgress').textContent = '1/5';
+            document.getElementById('startTrivia').style.display = 'none';
+            showTriviaQuestion();
+        }
+
+        function showTriviaQuestion() {
+            const container = document.getElementById('triviaContainer');
+            const q = triviaQuestions[currentTriviaQuestion];
+            
+            container.innerHTML = `
+                <div class="trivia-question">
+                    <h3>${q.question}</h3>
+                    <div class="trivia-options" id="triviaOptions">
+                        ${q.options.map((opt, idx) => `
+                            <div class="trivia-option" onclick="checkTriviaAnswer(${idx})">${opt}</div>
+                        `).join('')}
+                    </div>
+                    <div class="trivia-result" id="triviaResult"></div>
+                </div>
+            `;
+        }
+
+        function checkTriviaAnswer(selected) {
+            const q = triviaQuestions[currentTriviaQuestion];
+            const options = document.querySelectorAll('.trivia-option');
+            const result = document.getElementById('triviaResult');
+            
+            options.forEach((opt, idx) => {
+                opt.style.pointerEvents = 'none';
+                if (idx === q.correct) {
+                    opt.classList.add('correct');
+                }
+                if (idx === selected && idx !== q.correct) {
+                    opt.classList.add('incorrect');
+                }
+            });
+            
+            if (selected === q.correct) {
+                triviaScore++;
+                document.getElementById('triviaScore').textContent = triviaScore;
+                result.textContent = '✅ Correct!';
+                result.style.color = '#4caf50';
+                createConfetti();
+            } else {
+                result.textContent = '❌ Wrong!';
+                result.style.color = '#f44336';
+            }
+            
+            currentTriviaQuestion++;
+            document.getElementById('triviaProgress').textContent = `${currentTriviaQuestion + 1}/5`;
+            
+            if (currentTriviaQuestion < triviaQuestions.length) {
+                setTimeout(showTriviaQuestion, 2000);
+            } else {
+                setTimeout(() => {
+                    document.getElementById('triviaContainer').innerHTML = `
+                        <div class="trivia-question">
+                            <h3>🎉 Quiz Complete! 🎉</h3>
+                            <div class="trivia-result" style="color: #ffd700; font-size: 24px;">
+                                You got ${triviaScore} out of 5 correct!
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById('startTrivia').style.display = 'block';
+                    createFireworks();
+                }, 2000);
+            }
+        }
+
+        document.getElementById('startTrivia').addEventListener('click', startTrivia);
+
+        // ==================== MEMORY GAME ====================
+        function startMemory() {
+            matchedPairs = 0;
+            memoryMoves = 0;
+            flippedCards = [];
+            canFlip = true;
+            
+            document.getElementById('memoryMatches').textContent = '0/8';
+            document.getElementById('memoryMoves').textContent = '0';
+            
+            // Create pairs
+            memoryCards = [...memoryEmojis, ...memoryEmojis]
+                .sort(() => Math.random() - 0.5);
+            
+            const grid = document.getElementById('memoryGrid');
+            grid.innerHTML = '';
+            
+            memoryCards.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.emoji = emoji;
+                card.dataset.index = index;
+                
+                card.innerHTML = `
+                    <div class="card-back">❓</div>
+                    <div class="card-front">${emoji}</div>
+                `;
+                
+                card.addEventListener('click', () => flipCard(card));
+                grid.appendChild(card);
+            });
+            
+            document.getElementById('startMemory').textContent = 'Reset Game';
+        }
+
+        function flipCard(card) {
+            if (!canFlip || card.classList.contains('flipped') || card.classList.contains('matched')) {
+                return;
+            }
+            
+            card.classList.add('flipped');
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+                canFlip = false;
+                memoryMoves++;
+                document.getElementById('memoryMoves').textContent = memoryMoves;
+                
+                const [card1, card2] = flippedCards;
+                
+                if (card1.dataset.emoji === card2.dataset.emoji) {
+                    // Match!
+                    setTimeout(() => {
+                        card1.classList.add('matched');
+                        card2.classList.add('matched');
+                        matchedPairs++;
+                        document.getElementById('memoryMatches').textContent = `${matchedPairs}/8`;
+                        
+                        flippedCards = [];
+                        canFlip = true;
+                        
+                        createMiniBurst(card1.offsetLeft + 40, card1.offsetTop + 40, true);
+                        
+                        if (matchedPairs === 8) {
+                            setTimeout(() => {
+                                alert(`🎉 You won in ${memoryMoves} moves! 🎉`);
+                                createFireworks();
+                                createConfetti();
+                            }, 500);
+                        }
+                    }, 500);
+                } else {
+                    // No match
+                    setTimeout(() => {
+                        card1.classList.remove('flipped');
+                        card2.classList.remove('flipped');
+                        flippedCards = [];
+                        canFlip = true;
+                    }, 1000);
+                }
+            }
+        }
+
+        document.getElementById('startMemory').addEventListener('click', startMemory);
+
+        // ==================== GUESTBOOK ====================
+        let guestbookEntries = [];
+
+        document.getElementById('signGuestbook').addEventListener('click', () => {
+            const name = document.getElementById('guestName').value.trim();
+            const message = document.getElementById('guestMessage').value.trim();
+            
+            if (name && message) {
+                const entry = {
+                    name: name,
+                    message: message,
+                    time: new Date().toLocaleTimeString()
+                };
+                
+                guestbookEntries.unshift(entry);
+                displayGuestbookEntries();
+                
+                document.getElementById('guestName').value = '';
+                document.getElementById('guestMessage').value = '';
+                
+                createConfetti();
+            } else {
+                alert('Please enter both your name and a message!');
+            }
+        });
+
+        function displayGuestbookEntries() {
+            const container = document.getElementById('guestbookEntries');
+            container.innerHTML = '';
+            
+            guestbookEntries.forEach(entry => {
+                const entryDiv = document.createElement('div');
+                entryDiv.className = 'guestbook-entry';
+                entryDiv.innerHTML = `
+                    <div class="guestbook-name">${entry.name}</div>
+                    <div class="guestbook-message">${entry.message}</div>
+                    <div class="guestbook-time">${entry.time}</div>
+                `;
+                container.appendChild(entryDiv);
+            });
+        }
+
+        // ==================== RESOLUTION ====================
+        const resolutionButton = document.getElementById('resolution-button');
+        const resolutionInput = document.getElementById('resolution-input');
+        const resolutionMessage = document.getElementById('resolution-message');
+
+        resolutionButton.addEventListener('click', function() {
+            const resolution = resolutionInput.value.trim();
+            
+            if (resolution) {
+                const messages = [
+                    "✨ What a fantastic resolution! Here's to making 2026 amazing!",
+                    "🌟 Love it! You're going to crush this in 2026!",
+                    "🎆 That's the spirit! Cheers to new beginnings!",
+                    "💫 Beautiful! Can't wait to see you achieve this!",
+                    "🎊 Yes! 2026 is going to be YOUR year!",
+                    "🌠 Amazing goal! Let's make it happen together!"
+                ];
+                
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                resolutionMessage.textContent = randomMessage;
+                resolutionMessage.classList.add('visible');
+                
+                createFireworks();
+                createConfetti();
+                
+                setTimeout(() => {
+                    resolutionMessage.classList.remove('visible');
+                    resolutionInput.value = '';
+                }, 4000);
+            } else {
+                resolutionMessage.textContent = "Don't be shy! Share your resolution! 😊";
+                resolutionMessage.classList.add('visible');
+                
+                setTimeout(() => {
+                    resolutionMessage.classList.remove('visible');
+                }, 3000);
+            }
+        });
+
+        resolutionInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                resolutionButton.click();
+            }
+        });
+
+        // ==================== COUNTDOWN ====================
+        function updateCountdown() {
+            const newYear = new Date('January 1, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = newYear - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = 
+                `${days}d ${hours}h ${minutes}m ${seconds}s until 2026!`;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = "🎉 Happy New Year 2026! 🎉";
+            }
+        }
+
+        // ==================== EFFECTS ====================
+        function createFireworks() {
+            const colors = ['#ffd700', '#ff6b6b', '#4a90c9', '#a8d8ff', '#ffed4e'];
+            
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * (window.innerHeight * 0.5);
+                    
+                    for (let j = 0; j < 30; j++) {
+                        const firework = document.createElement('div');
+                        firework.className = 'firework';
+                        firework.style.left = x + 'px';
+                        firework.style.top = y + 'px';
+                        firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                        
+                        const angle = (Math.PI * 2 * j) / 30;
+                        const velocity = 2 + Math.random() * 2;
+                        
+                        document.body.appendChild(firework);
+                        
+                        let posX = x;
+                        let posY = y;
+                        let opacity = 1;
+                        
+                        const animation = setInterval(() => {
+                            posX += Math.cos(angle) * velocity;
+                            posY += Math.sin(angle) * velocity;
+                            opacity -= 0.02;
+                            
+                            firework.style.left = posX + 'px';
+                            firework.style.top = posY + 'px';
+                            firework.style.opacity = opacity;
+                            
+                            if (opacity <= 0) {
+                                clearInterval(animation);
+                                firework.remove();
+                            }
+                        }, 20);
+                    }
+                }, i * 300);
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#ffd700', '#ff6b6b', '#4a90c9', '#a8d8ff', '#ffed4e', '#ff8c42'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animation = `confetti-fall ${3 + Math.random() * 2}s linear`;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 50);
+            }
+        }
+
+        // ==================== INITIALIZE ====================
+        generateStars();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        document.querySelectorAll('.itinerary-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.background = 'rgba(74, 144, 201, 0.3)';
+                setTimeout(() => {
+                    this.style.background = 'rgba(0, 0, 0, 0.3)';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
