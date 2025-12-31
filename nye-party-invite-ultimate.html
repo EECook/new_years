@@ -865,6 +865,371 @@
             font-style: italic;
         }
 
+        /* Fortune Cookie */
+        .fortune-section {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .fortune-cookie {
+            width: 120px;
+            height: 120px;
+            margin: 20px auto;
+            cursor: pointer;
+            font-size: 80px;
+            transition: transform 0.3s ease;
+            user-select: none;
+        }
+
+        .fortune-cookie:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .fortune-cookie.cracked {
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .fortune-text {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffd700;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+        }
+
+        /* Fishing Game */
+        .fishing-section {
+            margin: 30px 0;
+        }
+
+        .fishing-pond {
+            position: relative;
+            height: 300px;
+            background: linear-gradient(180deg, rgba(74, 144, 201, 0.3) 0%, rgba(30, 77, 109, 0.5) 100%);
+            border-radius: 15px;
+            border: 3px solid #4a90c9;
+            overflow: hidden;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        .fishing-rod {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            animation: fishing-bob 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fishing-bob {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .fish-collection {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .fish-slot {
+            aspect-ratio: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #4a90c9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            position: relative;
+        }
+
+        .fish-slot.caught {
+            background: rgba(74, 144, 201, 0.3);
+            border-color: #ffd700;
+        }
+
+        .fish-slot.legendary {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 140, 0, 0.3));
+            border-color: #ffd700;
+            animation: legendary-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes legendary-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+        }
+
+        .fish-rarity {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            font-size: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+
+        .catch-message {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 18px;
+            color: #ffd700;
+            min-height: 30px;
+        }
+
+        /* Superlatives */
+        .superlatives-section {
+            margin: 30px 0;
+        }
+
+        .superlative-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .superlative-question {
+            font-size: 24px;
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .superlative-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .superlative-button {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #4a90c9, #2c5f8d);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .superlative-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(74, 144, 201, 0.4);
+        }
+
+        .superlative-progress {
+            text-align: center;
+            color: #a8d8ff;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        /* Mad Libs */
+        .madlib-section {
+            margin: 30px 0;
+        }
+
+        .madlib-story {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #a8d8ff;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .madlib-input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .madlib-input-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .madlib-label {
+            color: #ffd700;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .madlib-input {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #4a90c9;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .madlib-input:focus {
+            outline: none;
+            border-color: #a8d8ff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .madlib-result {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #e0e0e0;
+            display: none;
+        }
+
+        .madlib-result.visible {
+            display: block;
+        }
+
+        .madlib-blank {
+            color: #ffd700;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        /* Certificate */
+        .certificate-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .certificate-preview {
+            background: linear-gradient(135deg, #1e4d6d 0%, #2c5f8d 100%);
+            border: 5px solid #ffd700;
+            border-radius: 20px;
+            padding: 50px 30px;
+            margin: 30px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .certificate-preview::before,
+        .certificate-preview::after {
+            content: '🎉';
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.3;
+        }
+
+        .certificate-preview::before {
+            top: 20px;
+            left: 20px;
+        }
+
+        .certificate-preview::after {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .certificate-title {
+            font-size: 36px;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .certificate-subtitle {
+            font-size: 20px;
+            color: #a8d8ff;
+            margin-bottom: 30px;
+        }
+
+        .certificate-name-display {
+            font-size: 48px;
+            color: #fff;
+            font-family: cursive;
+            margin: 30px 0;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .certificate-text {
+            font-size: 16px;
+            color: #e0e0e0;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .certificate-footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #a8d8ff;
+            font-style: italic;
+        }
+
+        .certificate-name-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px;
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #4a90c9;
+            border-radius: 10px;
+            color: #fff;
+            margin: 20px auto;
+            display: block;
+            text-align: center;
+        }
+
+        .certificate-name-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .download-button {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border: none;
+            border-radius: 10px;
+            color: #0a0e27;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+        }
+
         /* Fireworks */
         .firework {
             position: fixed;
@@ -1014,7 +1379,9 @@
             <div class="tab-navigation">
                 <button class="tab-button active" onclick="switchTab('itinerary')">📅 Itinerary</button>
                 <button class="tab-button" onclick="switchTab('games')">🎮 Games</button>
+                <button class="tab-button" onclick="switchTab('fun')">🎉 Fun Stuff</button>
                 <button class="tab-button" onclick="switchTab('resolutions')">✨ Resolutions</button>
+                <button class="tab-button" onclick="switchTab('certificate')">🎁 Certificate</button>
             </div>
 
             <!-- Tab Contents -->
@@ -1122,10 +1489,72 @@
                 </div>
             </div>
 
+            <!-- Fun Stuff Tab -->
+            <div id="fun-tab" class="tab-content">
+                <!-- Fortune Cookie -->
+                <div class="game-section fortune-section" style="border-color: #ffd700;">
+                    <h2 class="game-title" style="color: #ffd700;">🥠 Fortune Cookie 🥠</h2>
+                    <p class="game-instructions">Click the cookie to reveal your 2026 fortune!</p>
+                    <div class="fortune-cookie" id="fortuneCookie" onclick="crackFortune()">🥠</div>
+                    <div class="fortune-text" id="fortuneText">Click the cookie above!</div>
+                </div>
+
+                <!-- Fishing Game -->
+                <div class="game-section fishing-section" style="border-color: #4a90c9;">
+                    <h2 class="game-title" style="color: #4a90c9;">🎣 Go Fishing! 🎣</h2>
+                    <p class="game-instructions">Click the pond to cast your line! Collect all 15 fish!</p>
+                    <div class="game-stats">
+                        <div class="stat">
+                            Caught: <span class="stat-value" id="fishCaught">0/15</span>
+                        </div>
+                        <div class="stat">
+                            Casts: <span class="stat-value" id="castCount">0</span>
+                        </div>
+                    </div>
+                    <div class="fishing-pond" id="fishingPond" onclick="castLine()">
+                        <div class="fishing-rod">🎣</div>
+                    </div>
+                    <div class="catch-message" id="catchMessage">Cast your line to start fishing!</div>
+                    <div class="fish-collection" id="fishCollection"></div>
+                </div>
+
+                <!-- Superlatives -->
+                <div class="game-section superlatives-section" style="border-color: #ffd700;">
+                    <h2 class="game-title" style="color: #ffd700;">🏆 Party Superlatives 🏆</h2>
+                    <p class="game-instructions">Answer fun questions about your year and friends!</p>
+                    <div class="superlative-card">
+                        <div class="superlative-question" id="superlativeQuestion">Ready to start?</div>
+                        <div class="superlative-controls">
+                            <button class="superlative-button" id="startSuperlatives" onclick="startSuperlatives()">Start Superlatives!</button>
+                            <button class="superlative-button" id="nextSuperlative" onclick="nextSuperlative()" style="display: none;">Next Question →</button>
+                        </div>
+                        <div class="superlative-progress" id="superlativeProgress"></div>
+                    </div>
+                </div>
+
+                <!-- Mad Libs -->
+                <div class="game-section madlib-section" style="border-color: #a8d8ff;">
+                    <h2 class="game-title" style="color: #a8d8ff;">📝 New Year's Mad Libs 📝</h2>
+                    <p class="game-instructions">Work with a friend to create hilarious NYE stories!</p>
+                    <div class="game-stats">
+                        <div class="stat">
+                            Story: <span class="stat-value" id="storyNumber">1/3</span>
+                        </div>
+                    </div>
+                    <div class="madlib-story" id="madlibStory"></div>
+                    <button class="game-button" style="background: linear-gradient(135deg, #a8d8ff, #4a90c9);" onclick="nextMadlib()">Next Story →</button>
+                </div>
+            </div>
+
             <!-- Resolutions Tab -->
             <div id="resolutions-tab" class="tab-content">
                 <div class="resolution-section">
                     <h3 class="resolution-title">✨ Your 2026 Resolution ✨</h3>
+                    <p style="text-align: center; color: #a8d8ff; font-size: 14px; margin-bottom: 15px; font-style: italic; line-height: 1.6;">
+                        🔒 <strong>Completely confidential!</strong> Your resolutions aren't saved, stored, or seen by anyone. 🔒<br>
+                        No database, no tracking, no logs - just you and your manifestation! 💭<br>
+                        <span style="color: #ffd700;">Dream big and be bold! ✨</span>
+                    </p>
                     <input 
                         type="text" 
                         class="resolution-input" 
@@ -1150,10 +1579,380 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Certificate Tab -->
+            <div id="certificate-tab" class="tab-content">
+                <div class="certificate-section">
+                    <h2 class="game-title" style="color: #ffd700;">🎁 Your Party Certificate 🎁</h2>
+                    <p class="game-instructions">Download your official NYE 2026 Party Certificate!</p>
+                    
+                    <input type="text" class="certificate-name-input" id="certificateName" placeholder="Enter your name..." maxlength="50">
+                    
+                    <div class="certificate-preview" id="certificatePreview">
+                        <div class="certificate-title">Certificate of Celebration</div>
+                        <div class="certificate-subtitle">New Year's Eve Party 2026</div>
+                        <div class="certificate-name-display" id="certNameDisplay">Your Name Here</div>
+                        <div class="certificate-text">
+                            Has officially joined the<br>
+                            <strong style="color: #ffd700;">Discord Edition New Year's Eve Party 2026</strong><br>
+                            and is ready to ring in the new year with<br>
+                            games, friends, and unforgettable memories!
+                        </div>
+                        <div class="certificate-footer">
+                            Presented by Family Movie Night Discord<br>
+                            December 31, 2025
+                        </div>
+                    </div>
+                    
+                    <button class="download-button" onclick="downloadCertificate()">Download Certificate 🎉</button>
+                    <p style="color: #a8d8ff; margin-top: 15px; font-size: 14px;">
+                        (Right-click the certificate and "Save Image As" or take a screenshot!)
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        // ==================== FORTUNE COOKIE ====================
+        const fortunes = [
+            "2026 will be your year of unexpected adventures! 🌟",
+            "A new friendship will change your life this year! 🤝",
+            "You'll discover a hidden talent in 2026! 🎨",
+            "Your biggest dream will take a step closer to reality! ✨",
+            "Laughter and joy will follow you throughout 2026! 😄",
+            "You'll overcome a challenge you thought impossible! 💪",
+            "A surprise opportunity will knock on your door! 🚪",
+            "Your creativity will reach new heights this year! 🎭",
+            "You'll make a memory that lasts a lifetime! 📸",
+            "Love and happiness will surround you in 2026! 💖",
+            "Your hard work will finally pay off! 🏆",
+            "You'll inspire someone in ways you never expected! 🌈",
+            "Adventure awaits in the most unexpected places! 🗺️",
+            "You'll learn something that changes your perspective! 📚",
+            "Your kindness will create a ripple effect! 🌊",
+            "2026 brings you closer to your authentic self! 🦋",
+            "You'll reconnect with someone special! 💫",
+            "A leap of faith will lead to amazing results! 🪂",
+            "Your positive energy will attract wonderful things! ☀️",
+            "The best is yet to come in 2026! 🎆"
+        ];
+
+        let usedFortunes = [];
+
+        function crackFortune() {
+            const cookie = document.getElementById('fortuneCookie');
+            const fortuneText = document.getElementById('fortuneText');
+            
+            cookie.classList.add('cracked');
+            
+            setTimeout(() => {
+                cookie.classList.remove('cracked');
+                
+                // Get random fortune that hasn't been used
+                if (usedFortunes.length === fortunes.length) {
+                    usedFortunes = []; // Reset if all used
+                }
+                
+                let fortune;
+                do {
+                    fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+                } while (usedFortunes.includes(fortune));
+                
+                usedFortunes.push(fortune);
+                fortuneText.textContent = fortune;
+                
+                createConfetti();
+            }, 500);
+        }
+
+        // ==================== FISHING GAME ====================
+        const fishTypes = [
+            { emoji: '🐟', name: 'Common Fish', rarity: 'Common', chance: 30 },
+            { emoji: '🐠', name: 'Tropical Fish', rarity: 'Common', chance: 25 },
+            { emoji: '🐡', name: 'Pufferfish', rarity: 'Uncommon', chance: 15 },
+            { emoji: '🦈', name: 'Shark', rarity: 'Rare', chance: 10 },
+            { emoji: '🐙', name: 'Octopus', rarity: 'Rare', chance: 10 },
+            { emoji: '🦑', name: 'Squid', rarity: 'Uncommon', chance: 12 },
+            { emoji: '🐬', name: 'Dolphin', rarity: 'Rare', chance: 8 },
+            { emoji: '🐳', name: 'Whale', rarity: 'Epic', chance: 5 },
+            { emoji: '🦭', name: 'Seal', rarity: 'Uncommon', chance: 15 },
+            { emoji: '🐢', name: 'Sea Turtle', rarity: 'Rare', chance: 8 },
+            { emoji: '🦀', name: 'Crab', rarity: 'Common', chance: 20 },
+            { emoji: '🦞', name: 'Lobster', rarity: 'Uncommon', chance: 12 },
+            { emoji: '🦐', name: 'Shrimp', rarity: 'Common', chance: 25 },
+            { emoji: '🪼', name: 'Jellyfish', rarity: 'Uncommon', chance: 15 },
+            { emoji: '⭐', name: 'Starfish', rarity: 'Legendary', chance: 2 }
+        ];
+
+        let caughtFish = [];
+        let castCount = 0;
+
+        function initFishCollection() {
+            const collection = document.getElementById('fishCollection');
+            collection.innerHTML = '';
+            
+            fishTypes.forEach((fish, index) => {
+                const slot = document.createElement('div');
+                slot.className = 'fish-slot';
+                slot.id = `fish-slot-${index}`;
+                slot.innerHTML = '❓';
+                collection.appendChild(slot);
+            });
+        }
+
+        function castLine() {
+            castCount++;
+            document.getElementById('castCount').textContent = castCount;
+            
+            const pond = document.getElementById('fishingPond');
+            pond.style.pointerEvents = 'none';
+            
+            // Animate casting
+            setTimeout(() => {
+                const roll = Math.random() * 100;
+                let cumulativeChance = 0;
+                let caughtFishType = null;
+                
+                for (let fish of fishTypes) {
+                    cumulativeChance += fish.chance;
+                    if (roll <= cumulativeChance) {
+                        caughtFishType = fish;
+                        break;
+                    }
+                }
+                
+                const fishIndex = fishTypes.indexOf(caughtFishType);
+                
+                if (!caughtFish.includes(fishIndex)) {
+                    // New fish!
+                    caughtFish.push(fishIndex);
+                    const slot = document.getElementById(`fish-slot-${fishIndex}`);
+                    slot.innerHTML = caughtFishType.emoji;
+                    slot.classList.add('caught');
+                    
+                    if (caughtFishType.rarity === 'Legendary') {
+                        slot.classList.add('legendary');
+                    }
+                    
+                    const raritySpan = document.createElement('span');
+                    raritySpan.className = 'fish-rarity';
+                    raritySpan.textContent = caughtFishType.rarity;
+                    raritySpan.style.color = getRarityColor(caughtFishType.rarity);
+                    slot.appendChild(raritySpan);
+                    
+                    document.getElementById('catchMessage').textContent = 
+                        `🎣 You caught a ${caughtFishType.rarity} ${caughtFishType.name}! 🎣`;
+                    document.getElementById('fishCaught').textContent = `${caughtFish.length}/15`;
+                    
+                    if (caughtFishType.rarity === 'Legendary' || caughtFishType.rarity === 'Epic') {
+                        createFireworks();
+                    } else {
+                        createConfetti();
+                    }
+                    
+                    if (caughtFish.length === 15) {
+                        setTimeout(() => {
+                            alert('🎉 Congratulations! You caught all the fish! 🎉');
+                            createFireworks();
+                        }, 500);
+                    }
+                } else {
+                    document.getElementById('catchMessage').textContent = 
+                        `You caught a ${caughtFishType.name}, but you already have one!`;
+                }
+                
+                pond.style.pointerEvents = 'auto';
+            }, 1000);
+        }
+
+        function getRarityColor(rarity) {
+            const colors = {
+                'Common': '#a8d8ff',
+                'Uncommon': '#4caf50',
+                'Rare': '#9c27b0',
+                'Epic': '#ff6b6b',
+                'Legendary': '#ffd700'
+            };
+            return colors[rarity] || '#fff';
+        }
+
+        // ==================== SUPERLATIVES ====================
+        const superlatives = [
+            "Who's most likely to keep their New Year's resolution? 🎯",
+            "Who had the best glow-up in 2025? ✨",
+            "Who's the biggest night owl? 🦉",
+            "Who's most likely to become famous? 🌟",
+            "Who gives the best advice? 💡",
+            "Who's the best at making people laugh? 😂",
+            "Who's most likely to win a game night? 🎮",
+            "Who has the best taste in music? 🎵",
+            "Who's the most adventurous? 🗺️",
+            "Who's most likely to accidentally start a trend? 👑",
+            "Who's the best cook or baker? 👨‍🍳",
+            "Who has the most contagious positive energy? ☀️",
+            "Who's most likely to randomly break into song? 🎤",
+            "Who gives the best hugs? 🤗",
+            "What was your favorite memory from 2025? 💭",
+            "What made you laugh the hardest this year? 😄",
+            "What's something you're grateful for from 2025? 🙏",
+            "What's a moment you'll never forget? 📸",
+            "What's the best thing you learned in 2025? 📚",
+            "What accomplishment are you most proud of? 🏆",
+            "What friendship moment meant the most? 💖",
+            "What's your favorite inside joke from this year? 🤫",
+            "What challenge did you overcome in 2025? 💪",
+            "What surprise made your year? 🎁",
+            "What tradition do you want to continue in 2026? 🎊"
+        ];
+
+        let currentSuperlative = 0;
+        let superlativesStarted = false;
+
+        function startSuperlatives() {
+            superlativesStarted = true;
+            currentSuperlative = 0;
+            document.getElementById('startSuperlatives').style.display = 'none';
+            document.getElementById('nextSuperlative').style.display = 'inline-block';
+            showSuperlative();
+        }
+
+        function showSuperlative() {
+            if (currentSuperlative < superlatives.length) {
+                document.getElementById('superlativeQuestion').textContent = superlatives[currentSuperlative];
+                document.getElementById('superlativeProgress').textContent = 
+                    `Question ${currentSuperlative + 1} of ${superlatives.length}`;
+            } else {
+                document.getElementById('superlativeQuestion').textContent = 
+                    "🎉 All done! Thanks for playing! 🎉";
+                document.getElementById('nextSuperlative').style.display = 'none';
+                document.getElementById('startSuperlatives').style.display = 'inline-block';
+                document.getElementById('startSuperlatives').textContent = 'Play Again!';
+                document.getElementById('superlativeProgress').textContent = '';
+                createFireworks();
+            }
+        }
+
+        function nextSuperlative() {
+            currentSuperlative++;
+            showSuperlative();
+        }
+
+        // ==================== MAD LIBS ====================
+        const madlibStories = [
+            {
+                title: "The Epic New Year's Countdown",
+                prompts: [
+                    { label: "Adjective", key: "adj1" },
+                    { label: "Noun", key: "noun1" },
+                    { label: "Verb (ending in -ing)", key: "verb1" },
+                    { label: "Food", key: "food" },
+                    { label: "Number", key: "number" },
+                    { label: "Adjective", key: "adj2" }
+                ],
+                template: "On New Year's Eve, we gathered for the most [adj1] party ever! Someone brought a giant [noun1] to the celebration. At midnight, everyone started [verb1] while eating [food]. We counted down from [number], and when the clock struck twelve, the entire room erupted in [adj2] cheers!"
+            },
+            {
+                title: "New Year's Resolutions Gone Wrong",
+                prompts: [
+                    { label: "Verb", key: "verb1" },
+                    { label: "Animal", key: "animal" },
+                    { label: "Adjective", key: "adj1" },
+                    { label: "Place", key: "place" },
+                    { label: "Celebrity", key: "celebrity" },
+                    { label: "Silly Action", key: "action" }
+                ],
+                template: "This year, I resolve to [verb1] every single day, just like a [animal]! I also want to become more [adj1] by visiting [place] at least once. If I succeed, I'll be as famous as [celebrity]! And if I fail, I promise to [action] in public as punishment!"
+            },
+            {
+                title: "The Midnight Surprise",
+                prompts: [
+                    { label: "Color", key: "color" },
+                    { label: "Adjective", key: "adj1" },
+                    { label: "Noun (plural)", key: "noun1" },
+                    { label: "Sound", key: "sound" },
+                    { label: "Emotion", key: "emotion" },
+                    { label: "Activity", key: "activity" }
+                ],
+                template: "Right before midnight, the sky turned [color] and the most [adj1] [noun1] appeared above us! Everyone made a [sound] sound in surprise. We all felt incredibly [emotion] as we began [activity] to welcome the new year together!"
+            }
+        ];
+
+        let currentMadlibIndex = 0;
+
+        function showMadlib() {
+            const story = madlibStories[currentMadlibIndex];
+            const container = document.getElementById('madlibStory');
+            
+            let html = `<h3 style="color: #ffd700; text-align: center; margin-bottom: 20px;">${story.title}</h3>`;
+            html += '<div class="madlib-input-group">';
+            
+            story.prompts.forEach(prompt => {
+                html += `
+                    <div class="madlib-input-wrapper">
+                        <label class="madlib-label">${prompt.label}</label>
+                        <input type="text" class="madlib-input" id="madlib-${prompt.key}" maxlength="30">
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            html += '<button class="game-button" style="background: linear-gradient(135deg, #ffd700, #ffed4e); color: #0a0e27; margin-top: 20px;" onclick="generateMadlib()">Generate Story! 📖</button>';
+            html += '<div class="madlib-result" id="madlibResult"></div>';
+            
+            container.innerHTML = html;
+            document.getElementById('storyNumber').textContent = `${currentMadlibIndex + 1}/3`;
+        }
+
+        function generateMadlib() {
+            const story = madlibStories[currentMadlibIndex];
+            let filledStory = story.template;
+            let allFilled = true;
+            
+            story.prompts.forEach(prompt => {
+                const value = document.getElementById(`madlib-${prompt.key}`).value.trim();
+                if (value) {
+                    filledStory = filledStory.replace(`[${prompt.key}]`, `<span class="madlib-blank">${value}</span>`);
+                } else {
+                    allFilled = false;
+                }
+            });
+            
+            if (allFilled) {
+                document.getElementById('madlibResult').innerHTML = filledStory;
+                document.getElementById('madlibResult').classList.add('visible');
+                createConfetti();
+            } else {
+                alert('Please fill in all the blanks!');
+            }
+        }
+
+        function nextMadlib() {
+            currentMadlibIndex = (currentMadlibIndex + 1) % madlibStories.length;
+            showMadlib();
+        }
+
+        // ==================== CERTIFICATE ====================
+        const certNameInput = document.getElementById('certificateName');
+        const certNameDisplay = document.getElementById('certNameDisplay');
+
+        certNameInput.addEventListener('input', function() {
+            const name = this.value.trim() || 'Your Name Here';
+            certNameDisplay.textContent = name;
+        });
+
+        function downloadCertificate() {
+            const name = document.getElementById('certificateName').value.trim();
+            if (!name) {
+                alert('Please enter your name first!');
+                return;
+            }
+            
+            // For now, encourage screenshot
+            alert('🎉 Right-click the certificate and select "Save Image As..." or take a screenshot! 📸');
+            createFireworks();
+            createConfetti();
+        }
         // Tab switching
         function switchTab(tabName) {
             // Hide all tabs
@@ -1621,19 +2420,15 @@
                 const entry = {
                     name: name,
                     message: message,
-                    time: new Date().toLocaleTimeString()
+                    time: new Date().toLocaleTimeString(),
+                    timestamp: Date.now()
                 };
                 
-                guestbookEntries.unshift(entry);
-                displayGuestbookEntries();
+                // Save to Firebase (this will trigger the real-time listener)
+                saveGuestbookToFirebase(entry);
                 
                 document.getElementById('guestName').value = '';
                 document.getElementById('guestMessage').value = '';
-                
-                // Restart marquee with new messages
-                clearInterval(marqueeInterval);
-                currentMarqueeIndex = 0;
-                startMarquee();
                 
                 createConfetti();
             } else {
@@ -1710,8 +2505,13 @@
 
         // ==================== COUNTDOWN ====================
         function updateCountdown() {
-            const newYear = new Date('January 1, 2026 00:00:00').getTime();
-            const now = new Date().getTime();
+            const now = new Date();
+            
+            // Calculate next New Year in user's local timezone
+            const currentYear = now.getFullYear();
+            const nextYear = now.getMonth() === 11 && now.getDate() === 31 ? currentYear + 1 : currentYear + 1;
+            const newYear = new Date(nextYear, 0, 1, 0, 0, 0);
+            
             const distance = newYear - now;
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -1719,11 +2519,16 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+            // Get user's timezone
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            
             document.getElementById('countdown').innerHTML = 
-                `${days}d ${hours}h ${minutes}m ${seconds}s until 2026!`;
+                `${days}d ${hours}h ${minutes}m ${seconds}s until ${nextYear}!<br>
+                <span style="font-size: 16px; color: #a8d8ff;">(Your time: ${timezone})</span>`;
 
             if (distance < 0) {
-                document.getElementById('countdown').innerHTML = "🎉 Happy New Year 2026! 🎉";
+                document.getElementById('countdown').innerHTML = `🎉 Happy New Year ${nextYear}! 🎉<br>
+                <span style="font-size: 16px; color: #a8d8ff;">(${timezone})</span>`;
             }
         }
 
@@ -1797,6 +2602,8 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
         startMarquee(); // Start the rolling message marquee
+        initFishCollection(); // Initialize fishing game
+        showMadlib(); // Load first mad lib story
 
         document.querySelectorAll('.itinerary-item').forEach(item => {
             item.addEventListener('click', function() {
@@ -1806,6 +2613,92 @@
                 }, 300);
             });
         });
+    </script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    
+    <script>
+        // ==================== FIREBASE CONFIGURATION ====================
+        // REPLACE THIS WITH YOUR FIREBASE CONFIG
+        // Get this from: Firebase Console > Project Settings > Your Apps > Firebase SDK snippet
+        const firebaseConfig = {
+          apiKey: "AIzaSyAXKwIWLnc3b9Vv71qSnUe25cwJH96-x4Q",
+          authDomain: "nye-party-2026.firebaseapp.com",
+          databaseURL: "https://nye-party-2026-default-rtdb.firebaseio.com",
+          projectId: "nye-party-2026",
+          storageBucket: "nye-party-2026.firebasestorage.app",
+          messagingSenderId: "819576269618",
+          appId: "1:819576269618:web:469d2e4a1965b170f3452b"
+        };
+
+        // Initialize Firebase
+        let database;
+        try {
+            firebase.initializeApp(firebaseConfig);
+            database = firebase.database();
+            console.log("✅ Firebase connected successfully!");
+            loadGuestbookFromFirebase();
+        } catch (error) {
+            console.log("⚠️ Firebase not configured yet. Using local mode.");
+            console.log("Follow the setup instructions to enable real-time syncing!");
+        }
+
+        // ==================== FIREBASE GUESTBOOK FUNCTIONS ====================
+        function loadGuestbookFromFirebase() {
+            const guestbookRef = database.ref('guestbook');
+            
+            // Listen for new entries in real-time
+            guestbookRef.on('value', (snapshot) => {
+                const entries = snapshot.val();
+                guestbookEntries = [];
+                
+                if (entries) {
+                    // Convert Firebase object to array
+                    Object.keys(entries).forEach(key => {
+                        guestbookEntries.push({
+                            ...entries[key],
+                            id: key
+                        });
+                    });
+                    
+                    // Sort by timestamp (newest first)
+                    guestbookEntries.sort((a, b) => b.timestamp - a.timestamp);
+                }
+                
+                displayGuestbookEntries();
+                
+                // Restart marquee with new data
+                if (guestbookEntries.length > 0) {
+                    clearInterval(marqueeInterval);
+                    currentMarqueeIndex = 0;
+                    startMarquee();
+                }
+            });
+        }
+
+        function saveGuestbookToFirebase(entry) {
+            if (!database) {
+                alert("Firebase not configured. Entry saved locally only.");
+                return;
+            }
+            
+            const guestbookRef = database.ref('guestbook');
+            const newEntryRef = guestbookRef.push();
+            
+            newEntryRef.set({
+                name: entry.name,
+                message: entry.message,
+                time: entry.time,
+                timestamp: Date.now()
+            }).then(() => {
+                console.log("✅ Entry saved to Firebase!");
+            }).catch((error) => {
+                console.error("❌ Error saving to Firebase:", error);
+                alert("Couldn't save to database, but entry is shown locally!");
+            });
+        }
     </script>
 </body>
 </html>
